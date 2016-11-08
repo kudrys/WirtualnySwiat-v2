@@ -13,7 +13,7 @@ void test(){
     nowy.wsadzZwierzakaDoSwiata(7,'L');
     nowy.wsadzZwierzakaDoSwiata(12,'C');
     cout<<endl;
-    //nowy.tura(nowy.organizmyTab[2][1]);   //do organizmyTab trzeba podawac odwrotnie X i Y, chuj wie czemu
+    //nowy.tura(nowy.organizmyTab[2][1]);   //do organizmyTab trzeba podawac odwrotnie X i Y
     cout<<endl<<"----WYNIK---"<<endl;
     nowy.rysujSwiat();
     nowy.kolejka.wypisz();
@@ -26,19 +26,19 @@ void test(){
 
 int main(){
 
-    //test();
-    cout<<"RYSZARD KUDUK 143271\n";
-    int x,y;
-    cout<<"podaj x:";
-    cin>>x;
-    cout<<"podaj y:";
-    cin>>y;
-
-    Swiat nowy(x,y);
-    nowy.losowanieXY();
-    cout<<endl;
-    nowy.kolejka.wypisz();
-    while(1){
-        nowy.runda();
-    }
+    test();
+//    cout<<"RYSZARD KUDUK 143271\n";
+//    int x,y;
+//    cout<<"podaj x:";
+//    cin>>x;
+//    cout<<"podaj y:";
+//    cin>>y;
+//
+//    Swiat nowy(x,y);
+//    nowy.losowanieXY();
+//    cout<<endl;
+//    nowy.kolejka.wypisz();
+//    while(1){
+//        nowy.runda();
+//    }
 }
