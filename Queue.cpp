@@ -14,7 +14,7 @@ void Queue::next(){
 void Queue::addNode(Organizm * wsadzany){
     Organizm * temp = first;
     if(!temp ||wsadzany->getInicjatywa()>first->getInicjatywa()){
-        wsadzany->next=first;
+        wsadzany->next = first;
         first=wsadzany;
     }else{
         while(temp){

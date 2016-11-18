@@ -33,6 +33,7 @@ protected:
     int szerokosc;  //x
     //wskaznik na wskaznik (tablica tablic)
 private:
+    void poruszenie(int aktX, int aktY, int napotkanyX, int napotkanyY);
 };
 
 #endif // SWIAT_H

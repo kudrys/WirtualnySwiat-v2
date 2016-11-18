@@ -303,15 +303,13 @@ int Swiat::tura(Organizm * aktualny){
         }
         //poruszanie
         if(aktualny->getOrganizmMark()=='Z'&&aktualny->akcja(napotkany)==2){
-            cout<<"* kierunek: "<<coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY)<<endl;
-            cout<<"napotX:"<<napotkanyX<<" napotY:"<<napotkanyY<<endl;
-            poruszenie(coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY),aktX,aktY);
+            poruszenie(aktX, aktY, napotkanyX, napotkanyY);
         }
         //rozmnazanie
         if(aktualny->akcja(napotkany)==3){
             cout<<"//rozmnazanie"<<endl;
             int value2 = wylosujWolnePole(aktX,aktY);
-            if (value2 = -1){
+            if (value2 == -1){
                 cout<<"Nie ma miejsca na nowy organizm.\n\n   ***KONIEC TURY***\n\n";
                 return 0;
             }
@@ -346,17 +344,25 @@ int Swiat::tura(Organizm * aktualny){
     }
 }
 
+void Swiat::poruszenie(int aktX, int aktY, int napotkanyX, int napotkanyY) {
+    cout << "* kierunek: " << coToZaKierunek(aktX, aktY, napotkanyX, napotkanyY) << endl;
+    cout<<"napotX:"<<napotkanyX<<" napotY:"<<napotkanyY<<endl;
+    poruszenie(coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY),aktX,aktY);
+}
+
 void Swiat::runda(){
     cout<<"-----Nowa-Runda-----\n";
-    while(kolejka.aktualny){
-        Organizm * temp = kolejka.aktualny->next;
+    while(kolejka.aktualny && kolejka.aktualny != (Organizm *) 0xfffff){
+        Organizm *aktualny = kolejka.aktualny;
+        Organizm *organizm = aktualny->next;
+        Organizm * temp = organizm;
         int tempReturn = tura(kolejka.aktualny);
-        if(temp)
+        if(kolejka.aktualny)
             kolejka.aktualny->activate();
-        if(tempReturn == -1){
-            kolejka.aktualny = temp->next;
-        }
-        kolejka.aktualny = temp;
+//        if(tempReturn == -1){
+//            kolejka.aktualny = temp->next;
+//        }else
+            kolejka.aktualny = temp;
     }
     kolejka.reset();
     Sleep(1000);

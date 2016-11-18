@@ -21,15 +21,15 @@ Organizm::~Organizm(){
 int Organizm::akcja(Organizm * napotkany){
     if(szansaNaSukces()){
         if(this->OrganizmMark=='R'){
-            return 1;
+            return 1;  //roslina
         }
         if(napotkany==0){
-            return 2;
+            return 2;  //wolne pole-poruszenie
         }
         if(this->label==napotkany->getLabel()){
-            return 3;
+            return 3;  //rozmnarzanie
         }
-        return 4;
+        return 4;  //kolizja
     }
 }
 
