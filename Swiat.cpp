@@ -265,6 +265,12 @@ char Swiat::coToZaKierunek(int x, int y, int newx, int newy){
     }
 }
 
+void Swiat::poruszenie(int aktX, int aktY, int napotkanyX, int napotkanyY) {
+    cout << "* kierunek: " << coToZaKierunek(aktX, aktY, napotkanyX, napotkanyY) << endl;
+    cout<<"napotX:"<<napotkanyX<<" napotY:"<<napotkanyY<<endl;
+    poruszenie(coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY),aktX,aktY);
+}
+
 int Swiat::tura(Organizm * aktualny){
     int z;
 
@@ -335,8 +341,7 @@ int Swiat::tura(Organizm * aktualny){
                 poruszenie(coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY),aktX,aktY);
                 rysujSwiat();
                 cout<<"\n\n   ***KONIEC TURY***\n\n";
-
-                return 1;
+                return 0;
             }
         }
         cout<<endl<<endl;
@@ -345,15 +350,11 @@ int Swiat::tura(Organizm * aktualny){
     }
 }
 
-void Swiat::poruszenie(int aktX, int aktY, int napotkanyX, int napotkanyY) {
-    cout << "* kierunek: " << coToZaKierunek(aktX, aktY, napotkanyX, napotkanyY) << endl;
-    cout<<"napotX:"<<napotkanyX<<" napotY:"<<napotkanyY<<endl;
-    poruszenie(coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY),aktX,aktY);
-}
+
 
 void Swiat::runda(){
     cout<<"-----Nowa-Runda-----\n";
-    while(kolejka.aktualny && kolejka.aktualny != (Organizm *) 0xfffff){
+    while(kolejka.aktualny){
         Organizm *aktualny = kolejka.aktualny;
         Organizm *organizm = aktualny->next;
         Organizm * temp = organizm;
@@ -363,8 +364,7 @@ void Swiat::runda(){
 //        if(tempReturn == -1){
 //            kolejka.aktualny = temp->next;
 //        }else
-        if(tempReturn == 1)
-            kolejka.aktualny = aktualny->next;
+            kolejka.aktualny = temp;
     }
     kolejka.reset();
     Sleep(1000);
