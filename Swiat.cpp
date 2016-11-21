@@ -335,7 +335,8 @@ int Swiat::tura(Organizm * aktualny){
                 poruszenie(coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY),aktX,aktY);
                 rysujSwiat();
                 cout<<"\n\n   ***KONIEC TURY***\n\n";
-                return 0;
+
+                return 1;
             }
         }
         cout<<endl<<endl;
@@ -362,7 +363,8 @@ void Swiat::runda(){
 //        if(tempReturn == -1){
 //            kolejka.aktualny = temp->next;
 //        }else
-            kolejka.aktualny = temp;
+        if(tempReturn == 1)
+            kolejka.aktualny = aktualny->next;
     }
     kolejka.reset();
     Sleep(1000);
